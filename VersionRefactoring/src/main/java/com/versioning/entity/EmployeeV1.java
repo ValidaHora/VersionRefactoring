@@ -2,16 +2,33 @@ package com.versioning.entity;
 
 public class EmployeeV1 {
 
-	private String id;
+//  @NotNull
+//  @Max(value = 99999999)
+//  @Min(value = 1)
+	private int id;
+//  @NotNull
+//  @NotBlank
+//  @NotEmpty
+//  @Size(min=1, max=40)
 	private String fullName;
+//  @Email
+//  @Size(max=30)
 	private String email;
+//  @Size(min = 1, max = 20)
 	private String phone;
 	private int	status;
 
-	public String getId() {
+  public EmployeeV1() {
+  }
+  
+	public EmployeeV1(int id) {
+	  this.id = id;
+	}
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getFullName() {

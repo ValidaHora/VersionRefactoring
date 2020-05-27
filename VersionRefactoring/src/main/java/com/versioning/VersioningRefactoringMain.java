@@ -1,13 +1,13 @@
-package com.versioning.app;
+package com.versioning;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SampleVersioningApplication {
+public class VersioningRefactoringMain {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SampleVersioningApplication.class, args);
+		SpringApplication.run(VersioningRefactoringMain.class, args);
 	}
 
 }
