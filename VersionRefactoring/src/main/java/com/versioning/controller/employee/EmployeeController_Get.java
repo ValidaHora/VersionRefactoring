@@ -19,7 +19,7 @@ public class EmployeeController_Get {
    * @param employeeId
    * @return
    */
-  @GetMapping(path = "/employees/{employeeId}", produces = {"*/*"})
+  @GetMapping(path = "/employees/{employeeId}", produces = {"application/json"})
   @ResponseStatus(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE)
   public @ResponseBody ErrorV1 getEmployeePerIdNotAccepted(@PathVariable(name = "employeeId") int employeeId) {
     return new ErrorV1(1, "No or wrong Accept header parameter. Or, Error in the URL.");

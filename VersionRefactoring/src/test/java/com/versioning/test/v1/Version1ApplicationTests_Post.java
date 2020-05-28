@@ -25,8 +25,7 @@ public class Version1ApplicationTests_Post {
   private RestTemplate restTemplate = new RestTemplate();
 
   private Version1ApplicationTests_Post() {
-    MediaType mt = new MediaType("application", "nbs.si.v1+json");
-    headersContentType.setContentType(mt);
+    headersContentType.setContentType(new MediaType("application", "nbs.si.v1+json"));
   }
 
   /**
@@ -47,7 +46,6 @@ public class Version1ApplicationTests_Post {
     response = restTemplate.exchange(url, HttpMethod.POST, new HttpEntity<>(employee, headersContentType), PostId.class);
     assertEquals(HttpStatus.CREATED, response.getStatusCode());
     assertEquals(id, response.getBody().getId());
-
   }
 
   /**
@@ -63,10 +61,9 @@ public class Version1ApplicationTests_Post {
     employee.setEmail("email@email.com");
     employee.setPhone("123457689");
 
-    System.out.println(headersNone.getFirst("Content-Type"));
     // Request with no Content Type Header
     try {
-      restTemplate.exchange(url, HttpMethod.POST, new HttpEntity<>(employee, headersNone), PostId.class);
+      restTemplate.exchange(url, HttpMethod.POST, new HttpEntity<>(employee, headersNone), Object.class);
       assertFalse(true);
     } catch (HttpClientErrorException he) {
       assertEquals(HttpStatus.UNSUPPORTED_MEDIA_TYPE, he.getStatusCode());

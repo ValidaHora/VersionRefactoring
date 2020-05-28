@@ -3,6 +3,8 @@ package com.versioning.test.v1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
@@ -30,7 +32,7 @@ class Version1ApplicationTests_Get {
 	 */
 	private Version1ApplicationTests_Get() {
 		MediaType mt = new MediaType("application", "nbs.si.v1+json");
-		headersContentType.setContentType(mt);
+		headersContentType.setAccept(Arrays.asList(mt));
 	}
 
 	/**
