@@ -23,8 +23,8 @@ public class EmployeeController_Post {
    */
   @PostMapping(path = "/employees", consumes = "application/nbs.si.v1+json")
   @ResponseStatus(HttpStatus.CREATED) // 201
-  public @ResponseBody PostId postemployeeV1(@RequestBody EmployeeV1 newEmployee) {
-    return new PostId(_postemployeeV1(newEmployee));
+  public @ResponseBody PostId postEmployeeV1(@RequestBody EmployeeV1 newEmployee) {
+    return new PostId(_postEmployeeV1(newEmployee));
   }
 
   /**
@@ -33,7 +33,7 @@ public class EmployeeController_Post {
    * @param employeeId
    * @return
    */
-  private int _postemployeeV1(@RequestBody EmployeeV1 newEmployee) {
+  private int _postEmployeeV1(@RequestBody EmployeeV1 newEmployee) {
     return newEmployee.getId();
   }
 
@@ -45,7 +45,7 @@ public class EmployeeController_Post {
    */
   @PostMapping(path = "/employees")
   @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-  public @ResponseBody ErrorV1 postemployeeNotAccepted(@RequestBody EmployeeV1 newEmployee) {
+  public @ResponseBody ErrorV1 postEmployeeNotAccepted(@RequestBody EmployeeV1 newEmployee) {
     return new ErrorV1(1, "No or wrong Accept header parameter. Or, Error in the URL.");
   }
   
