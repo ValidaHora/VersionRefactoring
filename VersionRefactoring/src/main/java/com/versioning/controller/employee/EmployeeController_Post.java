@@ -14,15 +14,9 @@ import com.versioning.entity.PostId;
 @RestController
 public class EmployeeController_Post {
 
-  @PostMapping(path = "/employees")
-  @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-  public @ResponseBody ErrorV1 postemployeeNotAccepted(@RequestBody EmployeeV1 newEmployee) {
-    return new ErrorV1(1, "No or wrong Accept header parameter. Or, Error in the URL.");
-  }
-  
-
   /**
-   * Test V1 OK
+   * POST /employees
+   * V1
    * 
    * @param newEmployee
    * @return
@@ -33,10 +27,33 @@ public class EmployeeController_Post {
     return new PostId(_postemployeeV1(newEmployee));
   }
 
+  /**
+   * Method to be refactored when new version is needed.
+   * 
+   * @param employeeId
+   * @return
+   */
   private int _postemployeeV1(@RequestBody EmployeeV1 newEmployee) {
     return newEmployee.getId();
   }
+
+  /**
+   * Validates all other Accept parameters as error request.
+   * 
+   * @param newEmployee
+   * @return
+   */
+  @PostMapping(path = "/employees")
+  @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
+  public @ResponseBody ErrorV1 postemployeeNotAccepted(@RequestBody EmployeeV1 newEmployee) {
+    return new ErrorV1(1, "No or wrong Accept header parameter. Or, Error in the URL.");
+  }
   
+  /**
+   * Basic test for POST.
+   * 
+   * @return
+   */
   @PostMapping(path = "/alo")
   public @ResponseBody String aloMundo() {
     System.out.println("Alo Mundo!");

@@ -14,19 +14,8 @@ import com.versioning.entity.ErrorV1;
 public class EmployeeController_Get {
 
   /**
-   * Validates all other Accept parameters.
-   * 
-   * @param employeeId
-   * @return
-   */
-  @GetMapping(path = "/employees/{employeeId}", produces = {"application/json"})
-  @ResponseStatus(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-  public @ResponseBody ErrorV1 getEmployeePerIdNotAccepted(@PathVariable(name = "employeeId") int employeeId) {
-    return new ErrorV1(1, "No or wrong Accept header parameter. Or, Error in the URL.");
-  }
-
-  /**
    * GET /employees/{employeeId}
+   * V1
    * 
    * @param employeeId
    * @return
@@ -46,6 +35,23 @@ public class EmployeeController_Get {
     return new EmployeeV1(employeeId);
   }
 
+  /**
+   * Validates all other Accept parameters as error request.
+   * 
+   * @param employeeId
+   * @return
+   */
+  @GetMapping(path = "/employees/{employeeId}", produces = {"application/json"})
+  @ResponseStatus(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE)
+  public @ResponseBody ErrorV1 getEmployeePerIdNotAccepted(@PathVariable(name = "employeeId") int employeeId) {
+    return new ErrorV1(1, "No or wrong Accept header parameter. Or, Error in the URL.");
+  }
+
+  /**
+   * Basic test for GET.
+   * 
+   * @return
+   */
   @GetMapping(path = "/alo")
   public @ResponseBody String aloMundo() {
     System.out.println("Alo Mundo!");
