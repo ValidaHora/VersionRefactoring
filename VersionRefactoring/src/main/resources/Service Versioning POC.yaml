@@ -76,6 +76,7 @@ paths:
         '404':
           description: "Employee not found"
     delete:
+      deprecated: true
       summary: "Delete employee"
       description: "This can only be done by the logged in user."
       operationId: "deleteEmployee"
