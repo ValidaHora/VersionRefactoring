@@ -103,9 +103,6 @@ components:
           type: "integer"
           format: "int64"
           example: "1234567890"
-        name:
-          type: "string"
-          example: "John Doe"
         firstName:
           type: "string"
           example: "John"
@@ -116,9 +113,6 @@ components:
           type: "string"
           format: email
           example: "contato@nationwide.co.uk"
-        password:
-          type: "string"
-          example: "SenhaSecreta"
         phone:
           type: "string"
           example: "01793-000000"
@@ -126,6 +120,10 @@ components:
           type: "integer"
           format: "int32"
           description: "Employee Status"
+        salaryStatement:
+          description: "URI of the salary statement resource"
+          type: "string"
+          example: "/salaryStatement/5143"
         relationship:
           type: "object"
           properties:
@@ -139,11 +137,12 @@ components:
                 description: "URI of a team member resource"
                 type: "string"
                 example: "/si/employees/2, /si/employees/3"
-            salaryStatement:
-              description: "URI of the salary statement resource"
-              type: "string"
-              example: "/salaryStatement/5143"
-  
+      required: 
+        - id
+        - firstName
+        - lastName
+        - status
+
     Employee_v1:
       deprecated: true
       type: "object"
@@ -166,4 +165,8 @@ components:
           type: "integer"
           format: "int32"
           description: "Employee Status"
+      required: 
+        - id
+        - fullname
+        - status
 

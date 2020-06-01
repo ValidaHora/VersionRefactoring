@@ -1,5 +1,6 @@
 package com.versioning.controller.employee;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,15 +21,17 @@ public class EmployeeController_Get {
    * 
    * @param employeeId
    * @return
+   * 
+   * @apiNote Use case L - Fields in a Response – Change Type<BR>
+   *          Id was integer, now it is string.<BR>
+   *          Solution 1 - Copy transformed data, if transformed OK
    */
   @GetMapping(path = "/employees/{employeeId}", produces = "application/nbs.si.v1+json")
   public @ResponseBody EmployeeV1 getEmployeePerIdV1(@PathVariable(name = "employeeId") int employeeId) {
     EmployeeV2 employeeV2 = _getEmployeePerIdV2(employeeId + "");
     EmployeeV1 employeeV1 = new EmployeeV1(employeeId);
-    employeeV1.setFullName(employeeV2.getEmail() + " " + employeeV2.getLastName());
-    employeeV1.setEmail(employeeV2.getEmail());
-    employeeV1.setPhone(employeeV2.getPhone());
-    employeeV1.setStatus(employeeV2.getStatus());
+    BeanUtils.copyProperties(employeeV2, employeeV1);
+    employeeV1.setFullName(employeeV2.getFirstName() + " " + employeeV2.getLastName());
     
     return employeeV1;
   }
@@ -52,7 +55,12 @@ public class EmployeeController_Get {
    * @return
    */
   private EmployeeV2 _getEmployeePerIdV2(String employeeId) {
-    return new EmployeeV2(employeeId);
+    EmployeeV2 employee = new EmployeeV2(employeeId);
+    employee.setFirstName("Haroldo");
+    employee.setLastName("Macedo");
+    employee.setEmail("email@email.com");
+    employee.setPhone("123457689");
+    return employee;
   }
 
   /**
@@ -65,16 +73,5 @@ public class EmployeeController_Get {
   @ResponseStatus(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE)
   public @ResponseBody ErrorV1 getEmployeePerIdNotAccepted(@PathVariable(name = "employeeId") int employeeId) {
     return new ErrorV1(1, "No or wrong Accept header parameter. Or, Error in the URL.");
-  }
-
-  /**
-   * Basic test for GET.
-   * 
-   * @return
-   */
-  @GetMapping(path = "/alo")
-  public @ResponseBody String aloMundo() {
-    System.out.println("Alo Mundo!");
-    return "Alo Mundo!";
   }
 }

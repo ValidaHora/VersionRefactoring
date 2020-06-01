@@ -32,6 +32,9 @@ public class EmployeeController_Delete {
    *  
    * @param newEmployee
    * @return
+   * 
+   * @apiNote Use case A -  Remove of an operation.<BR>
+   *          Method DELETE is not present. 
    */
   @DeleteMapping(path = "/employees/{employeeId}", produces = "application/nbs.si.v2+json")
   @ResponseStatus(HttpStatus.GONE)

@@ -1,5 +1,6 @@
 package com.versioning.controller.employee;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,19 +27,21 @@ public class EmployeeController_Post {
    * 
    * @param newEmployee
    * @return
+   * 
+   * @apiNote Use case H - Fields in a Request – Change Type<BR>
+   *          Id was integer, now it is string.<BR>
+   *          Solution 1 - Copy transformed data, if transformed OK
    */
   @PostMapping(path = "/employees", consumes = "application/nbs.si.v1+json")
   @ResponseStatus(HttpStatus.CREATED) // 201
   public @ResponseBody PostId postEmployeeV1(@RequestBody EmployeeV1 newEmployee) {
     //  Map to V2.
     EmployeeV2 employeeV2 = new EmployeeV2();
+    BeanUtils.copyProperties(newEmployee, employeeV2);
     employeeV2.setId(newEmployee.getId() + "");
     employeeV2.setFirstName(firstName(newEmployee.getFullName()));
     employeeV2.setLastName(lastName(newEmployee.getFullName()));
-    employeeV2.setPhone(newEmployee.getPhone());
-    employeeV2.setEmail(newEmployee.getEmail());
-    employeeV2.setStatus(newEmployee.getStatus());
-    
+
     //  Transform the String to an Integer.
     return new PostId(Integer.parseInt(_postEmployeeV2(employeeV2)));
   }
@@ -98,16 +101,5 @@ public class EmployeeController_Post {
   @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
   public @ResponseBody ErrorV1 postEmployeeNotAccepted(@RequestBody EmployeeV1 newEmployee) {
     return new ErrorV1(1, "No or wrong Accept header parameter. Or, Error in the URL.");
-  }
-  
-  /**
-   * Basic test for POST.
-   * 
-   * @return
-   */
-  @PostMapping(path = "/alo")
-  public @ResponseBody String aloMundo() {
-    System.out.println("Alo Mundo!");
-    return "Alo Mundo!";
   }
 }

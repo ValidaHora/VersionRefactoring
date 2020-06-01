@@ -2,19 +2,9 @@ package com.versioning.entity;
 
 public class EmployeeV1 {
 
-//  @NotNull
-//  @Max(value = 99999999)
-//  @Min(value = 1)
 	private int id;
-//  @NotNull
-//  @NotBlank
-//  @NotEmpty
-//  @Size(min=1, max=40)
 	private String fullName;
-//  @Email
-//  @Size(max=30)
 	private String email;
-//  @Size(min = 1, max = 20)
 	private String phone;
 	private int	status;
 
