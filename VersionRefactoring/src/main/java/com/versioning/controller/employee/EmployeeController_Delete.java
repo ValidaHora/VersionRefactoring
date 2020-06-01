@@ -16,6 +16,7 @@ public class EmployeeController_Delete {
   /**
    * DELETE /employees/{employeeId}
    * V1
+   * @deprecated
    * 
    * @param newEmployee
    * @return
@@ -23,6 +24,19 @@ public class EmployeeController_Delete {
   @DeleteMapping(path = "/employees/{employeeId}", produces = "application/nbs.si.v1+json")
   public @ResponseBody EmployeeV1 deleteEmployeeV1(@PathVariable(name = "employeeId") int employeeId) {
     return _deleteEmployeePerIdV1(employeeId);
+  }
+
+  /**
+   * DELETE /employees/{employeeId}
+   * V2 - RETIRED!
+   *  
+   * @param newEmployee
+   * @return
+   */
+  @DeleteMapping(path = "/employees/{employeeId}", produces = "application/nbs.si.v2+json")
+  @ResponseStatus(HttpStatus.GONE)
+  public @ResponseBody EmployeeV1 deleteEmployeeV2(@PathVariable(name = "employeeId") int employeeId) {
+    return null;
   }
 
   /**
