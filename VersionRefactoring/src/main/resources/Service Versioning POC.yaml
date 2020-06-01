@@ -68,6 +68,9 @@ paths:
             application/nbs.nem.v1+json:
               schema:
                 $ref: "#/components/schemas/Employee_v1"
+            application/nbs.nem.v2+json:
+              schema:
+                $ref: "#/components/schemas/Employee_v2"
         '400':
           description: "Invalid employee name supplied"
         '404':

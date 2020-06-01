@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.versioning.entity.EmployeeV1;
+import com.versioning.entity.EmployeeV2;
 import com.versioning.entity.ErrorV1;
 
 @RestController
@@ -22,7 +23,26 @@ public class EmployeeController_Get {
    */
   @GetMapping(path = "/employees/{employeeId}", produces = "application/nbs.si.v1+json")
   public @ResponseBody EmployeeV1 getEmployeePerIdV1(@PathVariable(name = "employeeId") int employeeId) {
-    return _getEmployeePerIdV1(employeeId);
+    EmployeeV2 employeeV2 = _getEmployeePerIdV2(employeeId + "");
+    EmployeeV1 employeeV1 = new EmployeeV1(employeeId);
+    employeeV1.setFullName(employeeV2.getEmail() + " " + employeeV2.getLastName());
+    employeeV1.setEmail(employeeV2.getEmail());
+    employeeV1.setPhone(employeeV2.getPhone());
+    employeeV1.setStatus(employeeV2.getStatus());
+    
+    return employeeV1;
+  }
+
+  /**
+   * GET /employees/{employeeId}
+   * V2
+   * 
+   * @param employeeId
+   * @return
+   */
+  @GetMapping(path = "/employees/{employeeId}", produces = "application/nbs.si.v2+json")
+  public @ResponseBody EmployeeV2 getEmployeePerIdV2(@PathVariable(name = "employeeId") String employeeId) {
+    return _getEmployeePerIdV2(employeeId);
   }
 
   /**
@@ -31,8 +51,8 @@ public class EmployeeController_Get {
    * @param employeeId
    * @return
    */
-  private EmployeeV1 _getEmployeePerIdV1(int employeeId) {
-    return new EmployeeV1(employeeId);
+  private EmployeeV2 _getEmployeePerIdV2(String employeeId) {
+    return new EmployeeV2(employeeId);
   }
 
   /**
