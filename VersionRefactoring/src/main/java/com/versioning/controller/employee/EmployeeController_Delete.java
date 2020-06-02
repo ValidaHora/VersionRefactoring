@@ -20,6 +20,10 @@ public class EmployeeController_Delete {
    * 
    * @param newEmployee
    * @return
+   * 
+   * @apiNote Use <B>case A</B> - Remove of an operation.<BR>
+   *          Method DELETE is not present. 
+   *          Solution 1 - Execute as if nothing has changed
    */
   @DeleteMapping(path = "/employees/{employeeId}", produces = "application/nbs.si.v1+json")
   public @ResponseBody EmployeeV1 deleteEmployeeV1(@PathVariable(name = "employeeId") int employeeId) {
@@ -33,8 +37,9 @@ public class EmployeeController_Delete {
    * @param newEmployee
    * @return
    * 
-   * @apiNote Use case A -  Remove of an operation.<BR>
+   * @apiNote Use <B>case A</B> - Remove of an operation.<BR>
    *          Method DELETE is not present. 
+   *          Solution 2 - Return HTTP Code
    */
   @DeleteMapping(path = "/employees/{employeeId}", produces = "application/nbs.si.v2+json")
   @ResponseStatus(HttpStatus.GONE)

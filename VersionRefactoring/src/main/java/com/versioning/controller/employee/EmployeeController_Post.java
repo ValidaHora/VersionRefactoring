@@ -27,8 +27,16 @@ public class EmployeeController_Post {
    * 
    * @param newEmployee
    * @return
+   *          
+   * @apiNote <b>Use case B</b> - Fields in a Request – Include<BR>
+   *          New input fields firstName, lastName, salaryStatement and relationShip.<BR>
+   *          Solution 3 - Set a null value
    * 
-   * @apiNote Use case H - Fields in a Request – Change Type<BR>
+   * @apiNote <b>Use case H</b> - Fields in a Request – Change Type<BR>
+   *          Id was integer, now it is string.<BR>
+   *          Solution 1 - Copy transformed data, if transformed OK
+   * 
+   * @apiNote <b>Use case L</b> - Fields in a Response – Change Type<BR>
    *          Id was integer, now it is string.<BR>
    *          Solution 1 - Copy transformed data, if transformed OK
    */

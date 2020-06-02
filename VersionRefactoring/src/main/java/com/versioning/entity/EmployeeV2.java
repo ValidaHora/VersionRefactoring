@@ -15,6 +15,8 @@ public class EmployeeV2 {
   private String email;
   private String phone;
   private int status;
+  private String  salaryStatement;
+
   private RelationShip relationShip = new RelationShip();
   
   public EmployeeV2() {}
@@ -85,6 +87,14 @@ public class EmployeeV2 {
 
   public void addTeamMember(String teamMember) {
     relationShip.teamMember.add(teamMember);
+  }
+
+  public String getSalaryStatement() {
+    return salaryStatement;
+  }
+
+  public void setSalaryStatement(String salaryStatement) {
+    this.salaryStatement = salaryStatement;
   }
 
 }

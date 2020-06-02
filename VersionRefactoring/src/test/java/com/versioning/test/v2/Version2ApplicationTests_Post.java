@@ -77,7 +77,8 @@ public class Version2ApplicationTests_Post {
     employee.setEmail("email@email.com");
     employee.setPhone("123457689");
     employee.addTeamMember("Victor Almeida");
-    
+    employee.setSalaryStatement("/salaryStatement/654");
+
     return employee;
   }  
 }

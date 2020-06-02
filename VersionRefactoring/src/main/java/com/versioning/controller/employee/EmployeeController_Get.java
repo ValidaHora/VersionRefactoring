@@ -22,7 +22,11 @@ public class EmployeeController_Get {
    * @param employeeId
    * @return
    * 
-   * @apiNote Use case L - Fields in a Response – Change Type<BR>
+   * @apiNote <b>Use case D</b> - Fields in a Response – Include<BR>
+   *          New output fields firstName, lastName, salaryStatement and relationShip.<BR>
+   *          Solution 2 - Ignore new field and don’t return it
+   *          
+   * @apiNote Use <B>case L</B> - Fields in a Response – Change Type<BR>
    *          Id was integer, now it is string.<BR>
    *          Solution 1 - Copy transformed data, if transformed OK
    */
@@ -32,7 +36,7 @@ public class EmployeeController_Get {
     EmployeeV1 employeeV1 = new EmployeeV1(employeeId);
     BeanUtils.copyProperties(employeeV2, employeeV1);
     employeeV1.setFullName(employeeV2.getFirstName() + " " + employeeV2.getLastName());
-    
+
     return employeeV1;
   }
 
@@ -60,6 +64,8 @@ public class EmployeeController_Get {
     employee.setLastName("Macedo");
     employee.setEmail("email@email.com");
     employee.setPhone("123457689");
+    employee.setSalaryStatement("/salaryStatement/654");
+    
     return employee;
   }
 
